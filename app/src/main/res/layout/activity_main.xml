@@ -1,61 +1,75 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:padding="16dp">
 
+    <!-- Entered Digits -->
     <TextView
-        android:id="@+id/password_display"
-        android:layout_width="0dp"
+        android:id="@+id/tvEntered"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:gravity="center"
-        android:hint="Enter password"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Entered Digits:"
+        android:textSize="20sp"
+        android:padding="8dp"/>
 
-            <GridLayout
-                android:id="@+id/keypad_grid"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:columnCount="3"
-                android:rowCount="4"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/password_display">
-    
-                <Button android:id="@+id/button1" android:text="1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:onClick="onNumberClick"/>
-                <Button android:id="@+id/button2" android:text="2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:onClick="onNumberClick"/>
-                <Button android:id="@+id/button3" android:text="3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:onClick="onNumberClick"/>
-                <Button android:id="@+id/button4" android:text="4" android:layout_width="wrap_content" android:layout_height="wrap_content" android:onClick="onNumberClick"/>
-                <Button android:id="@+id/button5" android:text="5" android:layout_width="wrap_content" android:layout_height="wrap_content" android:onClick="onNumberClick"/>
-                <Button android:id="@+id/button6" android:text="6" android:layout_width="wrap_content" android:layout_height="wrap_content" android:onClick="onNumberClick"/>
-                <Button android:id="@+id/button7" android:text="7" android:layout_width="wrap_content" android:layout_height="wrap_content" android:onClick="onNumberClick"/>
-                <Button android:id="@+id/button8" android:text="8" android:layout_width="wrap_content" android:layout_height="wrap_content" android:onClick="onNumberClick"/>
-                <Button android:id="@+id/button9" android:text="9" android:layout_width="wrap_content" android:layout_height="wrap_content" android:onClick="onNumberClick"/>
-                <Button android:id="@+id/button_clear" android:text="CLR" android:layout_width="wrap_content" android:layout_height="wrap_content" android:onClick="onClearClick"/>
-                <Button android:id="@+id/button0" android:text="0" android:layout_width="wrap_content" android:layout_height="wrap_content" android:onClick="onNumberClick"/>
-                <Button android:id="@+id/button_backspace" android:text="DEL" android:layout_width="wrap_content" android:layout_height="wrap_content" android:onClick="onBackspaceClick"/>
-    
-            </GridLayout>
+    <!-- Current Digit Prediction -->
     <TextView
-        android:id="@+id/prediction_display"
-        android:layout_width="0dp"
+        android:id="@+id/tvCurrentDigit"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:gravity="center"
-        android:hint="Predictions will appear here"
+        android:text="Current Digit Pred:"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/keypad_grid" />
+        android:padding="4dp"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Next Digit Prediction -->
+    <TextView
+        android:id="@+id/tvNextDigit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Next Digit Pred:"
+        android:textSize="18sp"
+        android:padding="4dp"/>
+
+    <!-- 3-Digit Sequence Prediction -->
+    <TextView
+        android:id="@+id/tv3Seq"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="3-Digit Seq Pred:"
+        android:textSize="18sp"
+        android:padding="4dp"/>
+
+    <!-- 4-Digit Sequence Prediction -->
+    <TextView
+        android:id="@+id/tv4Seq"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="4-Digit Seq Pred:"
+        android:textSize="18sp"
+        android:padding="4dp"/>
+
+    <!-- Digit Buttons Grid -->
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:rowCount="4"
+        android:columnCount="3"
+        android:layout_marginTop="16dp">
+
+        <Button android:id="@+id/btn1" android:text="1" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_columnWeight="1"/>
+        <Button android:id="@+id/btn2" android:text="2" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_columnWeight="1"/>
+        <Button android:id="@+id/btn3" android:text="3" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_columnWeight="1"/>
+        <Button android:id="@+id/btn4" android:text="4" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_columnWeight="1"/>
+        <Button android:id="@+id/btn5" android:text="5" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_columnWeight="1"/>
+        <Button android:id="@+id/btn6" android:text="6" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_columnWeight="1"/>
+        <Button android:id="@+id/btn7" android:text="7" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_columnWeight="1"/>
+        <Button android:id="@+id/btn8" android:text="8" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_columnWeight="1"/>
+        <Button android:id="@+id/btn9" android:text="9" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_columnWeight="1"/>
+        <Button android:id="@+id/btn0" android:text="0" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_columnWeight="1"/>
+        <Button android:id="@+id/btnClear" android:text="Clear" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_columnSpan="2" android:layout_columnWeight="2"/>
+    </GridLayout>
+
+</LinearLayout>

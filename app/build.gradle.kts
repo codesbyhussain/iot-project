@@ -1,24 +1,27 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
+    id("com.android.application")
+    kotlin("android")
 }
 
 android {
-    namespace = "com.example.iot_project"
-    compileSdk = 36
+    namespace = "com.example.sensorclassifier"
+    compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.iot_project"
-        minSdk = 24
-        targetSdk = 36
+        applicationId = "com.example.sensorclassifier"
+        minSdk = 26
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        // Only include these ABIs to avoid incompatible .so files
+        ndk {
+            abiFilters += listOf("armeabi-v7a", "arm64-v8a")
+        }
     }
 
     buildTypes {
-        release {
+        getByName("release") {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -26,24 +29,29 @@ android {
             )
         }
     }
-    buildFeatures {
-        viewBinding = true
+
+    // Prevent compression of .tflite files
+    aaptOptions {
+        noCompress("tflite")
     }
+
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
+
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
 }
 
 dependencies {
+    // TensorFlow Lite CPU only (16 KB page-aligned libraries)
+    implementation("org.tensorflow:tensorflow-lite:2.15.0")
+    // AndroidX Core & AppCompat
+    implementation("androidx.core:core-ktx:1.10.1")
+    implementation("androidx.appcompat:appcompat:1.6.1")
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    // Material Components
+    implementation("com.google.android.material:material:1.9.0")
 }
